@@ -1,0 +1,13 @@
+{
+  "name": "levels-website",
+  "private": true,
+  "scripts": {
+    "preview": "serve . -l tcp://127.0.0.1:8765",
+    "deploy": "vercel deploy --yes",
+    "deploy:prod": "vercel deploy --prod --yes"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4",
+    "vercel": "^50.44.0"
+  }
+}

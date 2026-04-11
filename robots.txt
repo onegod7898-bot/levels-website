@@ -1,0 +1,6 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap — update the domain if you use a Vercel URL before custom domain is connected
+Sitemap: https://www.levels-360.com/sitemap.xml
