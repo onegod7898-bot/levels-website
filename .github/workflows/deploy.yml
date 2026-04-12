@@ -1,0 +1,29 @@
+# Runs on every push to main.
+# - Default: rely on Vercel → Project → Git (GitHub) — each push to main already triggers a production deploy.
+# - Optional: add repo secret VERCEL_DEPLOY_HOOK (Vercel → Project → Settings → Git → Deploy Hooks) to POST a
+#   second deploy. Only set the hook if you are NOT using Git integration, or you will double-deploy.
+
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: deploy-main
+  cancel-in-progress: false
+
+jobs:
+  vercel-hook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Optional Vercel deploy hook
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "VERCEL_DEPLOY_HOOK not set — using Vercel Git integration only (deploy on every push to main)."
+            exit 0
+          fi
+          curl -fsS -X POST "$HOOK"

@@ -15,7 +15,7 @@
   <link rel="canonical" href="https://www.levels-360.com/">
   <link rel="alternate" hreflang="en-gb" href="https://www.levels-360.com/">
   <link rel="alternate" hreflang="x-default" href="https://www.levels-360.com/">
-  <meta name="theme-color" content="#0b0f14">
+  <meta name="theme-color" content="#000000">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Levels">
   <meta property="og:locale" content="en_GB">
@@ -47,11 +47,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Cool dark base + Lovable-style blue / warm paper text (#fcfbf8) */
-      --bg: #0b0f14;
-      --bg-elevated: #121820;
-      --bg-card: #101820;
-      --surface-soft: #0f1318;
+      /* Deep black base + Lovable-style blue / warm paper text (#fcfbf8) */
+      --bg: #000000;
+      --bg-elevated: #0a0a0a;
+      --bg-card: #0c0c0c;
+      --surface-soft: #050505;
       --cream: #fcfbf8;
       --text: #fcfbf8;
       --text-muted: rgba(252, 251, 248, 0.62);
@@ -65,7 +65,7 @@
       --accent-hover: #6b8cff;
       --accent-soft: rgba(75, 115, 255, 0.18);
       --accent-on-light: #0a0a12;
-      --wine: #0b0f14;
+      --wine: #000000;
       --border: rgba(255, 255, 255, 0.1);
       --border-strong: rgba(255, 255, 255, 0.16);
       --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.42), 0 0 0 1px var(--border);
@@ -87,8 +87,8 @@
       font-family: var(--font-body);
       background-color: var(--bg);
       background-image:
-        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(75, 115, 255, 0.14), transparent 55%),
-        radial-gradient(ellipse 80% 50% at 100% 100%, rgba(255, 142, 99, 0.09), transparent 45%);
+        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(75, 115, 255, 0.045), transparent 55%),
+        radial-gradient(ellipse 80% 50% at 100% 100%, rgba(255, 142, 99, 0.028), transparent 45%);
       color: var(--text);
       line-height: 1.7;
       overflow-x: hidden;
@@ -193,7 +193,7 @@
       transition: background 0.35s var(--ease), box-shadow 0.35s var(--ease);
     }
     .site-header.is-scrolled {
-      background: rgba(11, 15, 20, 0.92);
+      background: rgba(0, 0, 0, 0.94);
       backdrop-filter: blur(20px) saturate(1.1);
       -webkit-backdrop-filter: blur(20px) saturate(1.1);
       box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -470,7 +470,7 @@
       left: 16px;
       right: 16px;
       padding: 20px;
-      background: rgba(11, 15, 20, 0.97);
+      background: rgba(0, 0, 0, 0.98);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-hover);
       border: 1px solid var(--border);
@@ -541,8 +541,8 @@
       pointer-events: none;
       /* Very light veil — video stays visible across the frame */
       background:
-        linear-gradient(180deg, rgba(11, 15, 20, 0.04) 0%, rgba(11, 15, 20, 0.1) 55%, rgba(11, 15, 20, 0.16) 100%),
-        radial-gradient(ellipse 100% 70% at 50% 100%, rgba(75, 115, 255, 0.08), transparent 60%);
+        linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.14) 55%, rgba(0, 0, 0, 0.2) 100%),
+        radial-gradient(ellipse 100% 70% at 50% 100%, rgba(75, 115, 255, 0.06), transparent 60%);
     }
     .hero-card {
       position: relative;
@@ -555,7 +555,7 @@
         155deg,
         rgba(255, 255, 255, 0.07) 0%,
         rgba(252, 251, 248, 0.04) 40%,
-        rgba(11, 15, 20, 0.14) 100%
+        rgba(0, 0, 0, 0.18) 100%
       );
       border-radius: var(--radius-lg);
       border: 1px solid rgba(255, 255, 255, 0.28);
@@ -679,7 +679,7 @@
       align-items: flex-end;
       justify-content: center;
       padding: 48px 24px;
-      background: #0b0f14 center/cover no-repeat;
+      background: #000000 center/cover no-repeat;
       isolation: isolate;
     }
     .photo-strip--a { background-image: url('images/experience-red-carpet.png'); }
@@ -688,7 +688,7 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      background: linear-gradient(180deg, rgba(11, 15, 20, 0.2) 0%, rgba(11, 15, 20, 0.55) 100%);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.58) 100%);
     }
     .photo-strip__caption {
       position: relative;
@@ -709,7 +709,7 @@
       padding: clamp(88px, 13vw, 140px) 24px;
     }
     .section--velvet {
-      background: linear-gradient(180deg, #121820 0%, #0b0f14 45%, #090c10 100%);
+      background: linear-gradient(180deg, #0a0a0a 0%, #000000 45%, #000000 100%);
     }
     .section-inner {
       max-width: 1120px;
@@ -1339,11 +1339,11 @@
     }
     .reels-showcase__fade--left {
       left: 0;
-      background: linear-gradient(90deg, var(--bg) 0%, rgba(11, 15, 20, 0) 100%);
+      background: linear-gradient(90deg, var(--bg) 0%, rgba(0, 0, 0, 0) 100%);
     }
     .reels-showcase__fade--right {
       right: 0;
-      background: linear-gradient(270deg, var(--bg) 0%, rgba(11, 15, 20, 0) 100%);
+      background: linear-gradient(270deg, var(--bg) 0%, rgba(0, 0, 0, 0) 100%);
     }
     .reels-carousel {
       overflow: hidden;
@@ -1491,7 +1491,7 @@
       color: var(--text-muted);
       font-size: 0.875rem;
       letter-spacing: 0.02em;
-      background: linear-gradient(180deg, #101820 0%, #0b0f14 100%);
+      background: linear-gradient(180deg, #0c0c0c 0%, #000000 100%);
       border-top: 1px solid var(--border);
     }
     footer a { color: rgba(252, 251, 248, 0.95); font-weight: 600; }
