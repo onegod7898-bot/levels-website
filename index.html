@@ -21,7 +21,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/site.css">
-  <link rel="preload" href="assets/hero-bg.mp4" as="video" type="video/mp4">
   <link rel="preload" href="https://images.squarespace-cdn.com/content/v1/65390bdc8b505402583f3d5b/74725833-ff01-45a1-a950-fb6e02e1976c/IMG_6154.jpg" as="image" fetchpriority="high">
   <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -93,33 +92,57 @@
   </header>
 
   <main id="main">
-<section id="home" class="hero">
-      <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
-      <div class="hero-overlay" aria-hidden="true"></div>
-      <div class="hero-card fade-in">
-        <p class="hero-kicker">Scotland&rsquo;s premier event experience</p>
-        <h1 class="hero-title">
-          <span class="hero-title__line">Take your event to the next</span>
-          <span class="hero-title__brand">Level</span>
-        </h1>
-        <p class="hero-lead">360 videobooth · Chocolate fountain · Pancake cart · Selfie booth — everything you need to make your event truly unforgettable.</p>
-        <ul class="hero-stats" aria-label="Levels at a glance">
-          <li class="hero-stat">
-            <span class="hero-stat__num">360°</span>
-            <span class="hero-stat__label">HD Video Booth</span>
-          </li>
-          <li class="hero-stat">
-            <span class="hero-stat__num">4</span>
-            <span class="hero-stat__label">Signature hire</span>
-          </li>
-          <li class="hero-stat">
-            <span class="hero-stat__num">ALL</span>
-            <span class="hero-stat__label">of Scotland</span>
-          </li>
-        </ul>
-        <div class="hero-actions">
-          <a class="btn-pill btn-pill--primary" href="book.html">Book your date</a>
-          <a class="btn-pill btn-pill--soft" href="services.html">View services</a>
+<section id="home" class="hero hero--services">
+      <div class="hero-services-bg" aria-hidden="true"></div>
+      <div class="hero__inner">
+        <header class="hero__intro fade-in">
+          <h1 class="hero-services-headline">
+            <span class="hero-services-headline__line">Take Your Event To The</span>
+            <span class="hero-services-headline__brand">Next Level</span>
+          </h1>
+          <p class="hero-services-sub">All-in-one event experiences — from 360 Video Booth to catering setups.</p>
+          <a class="btn-pill btn-pill--primary hero-services-cta" href="book.html">Book Your Date</a>
+        </header>
+        <div class="hero-services" data-hero-services>
+          <div class="hero-services__grid" role="list">
+            <article class="hero-service-card fade-in" role="listitem" data-service-index="0">
+              <a href="360-videobooth.html" class="hero-service-card__link">
+                <div class="hero-service-card__media">
+                  <img src="images/premium-360-video-booth.png" alt="360 Video Booth — LED platform, ring light, and Levels branding" width="800" height="1000" loading="eager" fetchpriority="high" decoding="async">
+                  <div class="hero-service-card__overlay"></div>
+                  <h2 class="hero-service-card__title">360 Video Booth</h2>
+                </div>
+              </a>
+            </article>
+            <article class="hero-service-card fade-in" role="listitem" data-service-index="1">
+              <a href="services.html" class="hero-service-card__link">
+                <div class="hero-service-card__media">
+                  <img src="images/gallery-luxury-selfie-booth.png" alt="Luxury selfie booth with ring light and backdrop" width="800" height="1000" loading="eager" decoding="async">
+                  <div class="hero-service-card__overlay"></div>
+                  <h2 class="hero-service-card__title">Selfie Booth</h2>
+                </div>
+              </a>
+            </article>
+            <article class="hero-service-card fade-in" role="listitem" data-service-index="2">
+              <a href="services.html" class="hero-service-card__link">
+                <div class="hero-service-card__media">
+                  <img src="images/premium-pancake-cart.png" alt="Pancake cart with mini pancakes, sauces, and toppings" width="1600" height="900" loading="eager" decoding="async">
+                  <div class="hero-service-card__overlay"></div>
+                  <h2 class="hero-service-card__title">Pancake Cart</h2>
+                </div>
+              </a>
+            </article>
+            <article class="hero-service-card fade-in" role="listitem" data-service-index="3">
+              <a href="services.html" class="hero-service-card__link">
+                <div class="hero-service-card__media">
+                  <img src="images/gallery-chocolate-fountain-milk.png" alt="Chocolate fountain with fruit and dipping treats" width="800" height="1000" loading="eager" decoding="async">
+                  <div class="hero-service-card__overlay"></div>
+                  <h2 class="hero-service-card__title">Chocolate Fountain</h2>
+                </div>
+              </a>
+            </article>
+          </div>
+          <div class="hero-services__dots" data-hero-dots aria-label="Service slides"></div>
         </div>
       </div>
     </section>
