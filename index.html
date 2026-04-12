@@ -912,14 +912,25 @@
 
     .premium-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 22px;
       margin-top: 8px;
       margin-bottom: 8px;
     }
+    @media (max-width: 1100px) {
+      .premium-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 560px) {
+      .premium-grid {
+        grid-template-columns: 1fr;
+      }
+    }
     .premium-card {
       display: flex;
       flex-direction: column;
+      min-width: 0;
       background: var(--bg-card);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
@@ -1978,7 +1989,7 @@
         <div class="premium-grid">
           <article class="premium-card fade-in">
             <div class="premium-card__media">
-              <img src="images/premium-360-video-booth.png" alt="360 Video Booth with neon backdrop, red carpet, and gold stanchions" width="800" height="1000" loading="lazy" decoding="async">
+              <img src="images/gallery-360-levels-banner.png" alt="360 Video Booth — branded platform, LED lighting, pull-up banner, and VIP ropes" width="800" height="1000" loading="lazy" decoding="async">
             </div>
             <div class="premium-card__body">
               <div class="premium-card__icon" aria-hidden="true">
@@ -1995,7 +2006,7 @@
             </div>
             <div class="premium-card__body">
               <div class="premium-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M12 2l1.2 3.6L17 7l-3.8 1.4L12 12l-1.2-3.6L7 7l3.8-1.4L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M11 3h2v7h7v2h-7v7h-2v-7H4v-2h7V3z"/></svg>
               </div>
               <h3>Chocolate Fountain</h3>
               <p>Luxury Belgian chocolate fountain with a premium selection of dipping fruits, marshmallows, and treats. A centrepiece your guests will love.</p>
@@ -2008,7 +2019,7 @@
             </div>
             <div class="premium-card__body">
               <div class="premium-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M12 3l2.2 5 5.3.8-3.8 3.7.9 5.3L12 15.8 7.4 17.8l.9-5.3-3.8-3.7 5.3-.8L12 3z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l8 10-8 10-8-10 8-10z"/></svg>
               </div>
               <h3>Selfie Booths</h3>
               <p>Premium selfie stations with instant high-quality printing, custom overlays, and digital sharing direct to your guests&rsquo; phones.</p>
@@ -2021,7 +2032,7 @@
             </div>
             <div class="premium-card__body">
               <div class="premium-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l2.6 7.1h7.4l-6 4.6 2.3 7.1-6.3-4.7-6.3 4.7 2.3-7.1-6-4.6h7.4L12 2z"/></svg>
               </div>
               <h3>Pancake Cart</h3>
               <p>Freshly made pancakes with a variety of luxury toppings, sauces, and fresh fruits. A delicious interactive experience your guests will love.</p>
