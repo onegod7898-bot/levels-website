@@ -1929,16 +1929,41 @@
       padding: calc(96px + env(safe-area-inset-top, 0px)) clamp(16px, 4vw, 28px) clamp(28px, 4vw, 48px);
       align-items: flex-start;
       padding-top: calc(88px + env(safe-area-inset-top, 0px));
+      position: relative;
+      overflow: hidden;
     }
-    .hero-services-bg {
+    .hero-services-slideshow {
       position: absolute;
       inset: 0;
       z-index: 0;
       pointer-events: none;
+    }
+    .hero-services-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.1s var(--ease-premium, cubic-bezier(0.4, 0, 0.2, 1));
+      will-change: opacity;
+    }
+    .hero-services-slide.is-active {
+      opacity: 1;
+    }
+    .hero-services-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.02);
+    }
+    .hero-services-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
       background:
-        radial-gradient(ellipse 120% 80% at 50% -10%, rgba(126, 200, 206, 0.07), transparent 55%),
-        radial-gradient(ellipse 90% 60% at 100% 100%, rgba(201, 184, 150, 0.06), transparent 50%),
-        linear-gradient(180deg, #0a0908 0%, #060504 45%, #080706 100%);
+        linear-gradient(180deg, rgba(5, 4, 3, 0.55) 0%, rgba(5, 4, 3, 0.42) 38%, rgba(3, 2, 2, 0.65) 100%),
+        radial-gradient(ellipse 120% 80% at 50% -10%, rgba(126, 200, 206, 0.08), transparent 55%),
+        radial-gradient(ellipse 90% 60% at 100% 100%, rgba(201, 184, 150, 0.06), transparent 50%);
     }
     .hero.hero--services .hero__inner {
       position: relative;
@@ -1949,7 +1974,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: clamp(20px, 3.5vw, 32px);
+      gap: clamp(18px, 3vw, 28px);
     }
     .hero__intro {
       text-align: center;
@@ -2007,89 +2032,58 @@
     .hero-services {
       width: 100%;
     }
-    .hero-services__grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: clamp(12px, 2vw, 18px);
+    .hero-services__strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
       max-width: 920px;
       margin: 0 auto;
-      width: 100%;
-      list-style: none;
       padding: 0;
+      list-style: none;
     }
-    .hero-service-card {
-      position: relative;
-      border-radius: 18px;
-      overflow: hidden;
-      background: var(--bg-card);
-      box-shadow:
-        0 12px 40px rgba(0, 0, 0, 0.42),
-        0 0 0 1px rgba(255, 255, 255, 0.08);
-      transition:
-        box-shadow 0.45s var(--ease-premium),
-        transform 0.45s var(--ease-premium);
-    }
-    .hero-service-card.is-highlight {
-      box-shadow:
-        0 16px 48px rgba(0, 0, 0, 0.5),
-        0 0 0 2px rgba(201, 184, 150, 0.55),
-        0 0 32px rgba(126, 200, 206, 0.12);
-      transform: translateY(-2px);
-    }
-    .hero-service-card__link {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-    }
-    .hero-service-card__media {
-      position: relative;
-      aspect-ratio: 4 / 5;
-      overflow: hidden;
-      background: #12100e;
-    }
-    .hero-service-card__media img {
-      position: relative;
-      z-index: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transform: scale(1);
-      transition: transform 0.55s var(--ease-premium);
-    }
-    .hero-service-card:hover .hero-service-card__media img,
-    .hero-service-card:focus-within .hero-service-card__media img {
-      transform: scale(1.06);
-    }
-    .hero-service-card__overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      pointer-events: none;
-      background: linear-gradient(
-        180deg,
-        rgba(5, 4, 3, 0.1) 0%,
-        rgba(5, 4, 3, 0.35) 45%,
-        rgba(5, 4, 3, 0.82) 100%
-      );
-    }
-    .hero-service-card__title {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 3;
-      padding: 16px 16px 18px;
+    .hero-services-strip__item {
       font-family: var(--font-body);
-      font-size: clamp(1rem, 2.2vw, 1.15rem);
-      font-weight: 700;
-      letter-spacing: 0.06em;
+      font-size: clamp(0.68rem, 1.35vw, 0.8rem);
+      font-weight: 600;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #faf6f0;
-      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.75);
+      color: rgba(250, 246, 240, 0.9);
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(0, 0, 0, 0.38);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      transition: background 0.35s var(--ease-premium), border-color 0.35s var(--ease-premium), transform 0.35s var(--ease-premium);
+    }
+    .hero-services-strip__item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+    .hero-services-strip__item.is-active {
+      border-color: rgba(201, 184, 150, 0.75);
+      background: rgba(201, 184, 150, 0.14);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(201, 184, 150, 0.2);
+    }
+    .hero-services-strip__item:focus-visible {
+      outline: 2px solid var(--champagne);
+      outline-offset: 3px;
+    }
+    .hero-services-live {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
     .hero-services__dots {
-      display: none;
+      display: flex;
       justify-content: center;
       align-items: center;
       gap: 8px;
@@ -2114,34 +2108,19 @@
         min-height: auto;
         padding-bottom: 24px;
       }
-      .hero-services__grid {
-        display: flex;
-        flex-direction: row;
-        gap: 12px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-        scroll-padding-inline: 16px;
-        padding: 4px 16px 12px;
-        margin: 0 -16px;
-        max-width: none;
-        -webkit-overflow-scrolling: touch;
+      .hero-services__strip {
+        gap: 8px;
       }
-      .hero-service-card {
-        flex: 0 0 min(86vw, 300px);
-        scroll-snap-align: start;
-      }
-      .hero-services__dots {
-        display: flex;
+      .hero-services-strip__item {
+        padding: 8px 12px;
+        flex: 1 1 calc(50% - 8px);
+        min-width: 0;
+        text-align: center;
       }
     }
     @media (prefers-reduced-motion: reduce) {
-      .hero-service-card.is-highlight {
-        transform: none;
-      }
-      .hero-service-card:hover .hero-service-card__media img,
-      .hero-service-card:focus-within .hero-service-card__media img {
-        transform: none;
+      .hero-services-slide {
+        transition: opacity 0.2s ease;
       }
     }
 </style>
@@ -2208,6 +2187,20 @@
 
   <main id="main">
     <section id="home" class="hero hero--services">
+      <div class="hero-services-slideshow" data-hero-slideshow aria-hidden="true">
+        <div class="hero-services-slide is-active" data-slide="0">
+          <img src="images/hero-360-video-booth.png" alt="" width="800" height="1000" loading="eager" fetchpriority="high" decoding="async">
+        </div>
+        <div class="hero-services-slide" data-slide="1">
+          <img src="images/hero-selfie-booth.png" alt="" width="800" height="1000" loading="eager" decoding="async">
+        </div>
+        <div class="hero-services-slide" data-slide="2">
+          <img src="images/hero-pancake-cart.png" alt="" width="1600" height="900" loading="eager" decoding="async">
+        </div>
+        <div class="hero-services-slide" data-slide="3">
+          <img src="images/hero-chocolate-fountain.png" alt="" width="800" height="1000" loading="eager" decoding="async">
+        </div>
+      </div>
       <div class="hero-services-bg" aria-hidden="true"></div>
       <div class="hero__inner">
         <header class="hero__intro fade-in">
@@ -2219,44 +2212,13 @@
           <a class="btn-pill btn-pill--primary hero-services-cta" href="#booking">Book Your Date</a>
         </header>
         <div class="hero-services" data-hero-services>
-          <div class="hero-services__grid" role="list">
-            <article class="hero-service-card fade-in" role="listitem" data-service-index="0">
-              <a href="#booth" class="hero-service-card__link">
-                <div class="hero-service-card__media">
-                  <img src="images/hero-360-video-booth.png" alt="360 Video Booth — professional platform, lighting, and branding" width="800" height="1000" loading="eager" fetchpriority="high" decoding="async">
-                  <div class="hero-service-card__overlay"></div>
-                  <h2 class="hero-service-card__title">360 Video Booth</h2>
-                </div>
-              </a>
-            </article>
-            <article class="hero-service-card fade-in" role="listitem" data-service-index="1">
-              <a href="#services" class="hero-service-card__link">
-                <div class="hero-service-card__media">
-                  <img src="images/hero-selfie-booth.png" alt="Luxury selfie booth with ring light and backdrop" width="800" height="1000" loading="eager" decoding="async">
-                  <div class="hero-service-card__overlay"></div>
-                  <h2 class="hero-service-card__title">Selfie Booth</h2>
-                </div>
-              </a>
-            </article>
-            <article class="hero-service-card fade-in" role="listitem" data-service-index="2">
-              <a href="#services" class="hero-service-card__link">
-                <div class="hero-service-card__media">
-                  <img src="images/hero-pancake-cart.png" alt="Pancake cart with mini pancakes, sauces, and toppings" width="1600" height="900" loading="eager" decoding="async">
-                  <div class="hero-service-card__overlay"></div>
-                  <h2 class="hero-service-card__title">Pancake Cart</h2>
-                </div>
-              </a>
-            </article>
-            <article class="hero-service-card fade-in" role="listitem" data-service-index="3">
-              <a href="#services" class="hero-service-card__link">
-                <div class="hero-service-card__media">
-                  <img src="images/hero-chocolate-fountain.png" alt="Chocolate fountain with fruit and dipping treats" width="800" height="1000" loading="eager" decoding="async">
-                  <div class="hero-service-card__overlay"></div>
-                  <h2 class="hero-service-card__title">Chocolate Fountain</h2>
-                </div>
-              </a>
-            </article>
-          </div>
+          <nav class="hero-services__strip" aria-label="Our services">
+            <button type="button" class="hero-services-strip__item fade-in is-active" data-service-index="0" aria-pressed="true">360 Video Booth</button>
+            <button type="button" class="hero-services-strip__item fade-in" data-service-index="1" aria-pressed="false">Selfie Booth</button>
+            <button type="button" class="hero-services-strip__item fade-in" data-service-index="2" aria-pressed="false">Pancake Cart</button>
+            <button type="button" class="hero-services-strip__item fade-in" data-service-index="3" aria-pressed="false">Chocolate Fountain</button>
+          </nav>
+          <span id="heroServicesLive" class="hero-services-live" aria-live="polite" aria-atomic="true"></span>
           <div class="hero-services__dots" data-hero-dots aria-label="Service slides"></div>
         </div>
       </div>
@@ -2911,22 +2873,30 @@
       }
 
 
+
       function initHeroServices() {
         var wrap = document.querySelector('[data-hero-services]');
         if (!wrap) return;
-        var grid = wrap.querySelector('.hero-services__grid');
+        var root = document.getElementById('home');
+        var slides = root ? root.querySelectorAll('.hero-services-slide') : [];
+        var strip = wrap.querySelector('.hero-services__strip');
         var dotsWrap = wrap.querySelector('[data-hero-dots]');
-        if (!grid) return;
-        var cards = grid.querySelectorAll('.hero-service-card');
-        if (!cards.length) return;
+        var live = document.getElementById('heroServicesLive');
+        if (!slides.length || !strip) return;
+        var buttons = strip.querySelectorAll('.hero-services-strip__item');
+        var labels = ['360 Video Booth', 'Selfie Booth', 'Pancake Cart', 'Chocolate Fountain'];
         var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var idx = 0;
         var timer = null;
 
-        function setHighlight(i) {
-          idx = (i + cards.length) % cards.length;
-          cards.forEach(function (c, j) {
-            c.classList.toggle('is-highlight', j === idx);
+        function setSlide(i) {
+          idx = (i + slides.length) % slides.length;
+          slides.forEach(function (s, j) {
+            s.classList.toggle('is-active', j === idx);
+          });
+          buttons.forEach(function (b, j) {
+            b.classList.toggle('is-active', j === idx);
+            b.setAttribute('aria-pressed', j === idx ? 'true' : 'false');
           });
           if (dotsWrap) {
             var dots = dotsWrap.querySelectorAll('.hero-services__dot');
@@ -2934,71 +2904,52 @@
               d.setAttribute('aria-current', j === idx ? 'true' : 'false');
             });
           }
-        }
-
-        function scrollCardIntoView(i) {
-          if (window.innerWidth > 699) return;
-          var card = cards[i];
-          if (!card) return;
-          var left = card.offsetLeft - grid.offsetLeft;
-          try {
-            grid.scrollTo({ left: left, behavior: reduced ? 'auto' : 'smooth' });
-          } catch (e) {
-            grid.scrollLeft = left;
+          if (live) {
+            live.textContent = 'Now showing: ' + labels[idx];
           }
         }
 
-        function isMobile() {
-          return window.innerWidth <= 699;
-        }
-
-        if (dotsWrap && isMobile()) {
-          for (var di = 0; di < cards.length; di++) {
+        function buildDots() {
+          if (!dotsWrap) return;
+          dotsWrap.innerHTML = '';
+          for (var di = 0; di < slides.length; di++) {
             (function (n) {
               var b = document.createElement('button');
               b.type = 'button';
               b.className = 'hero-services__dot';
-              b.setAttribute('aria-label', 'Go to service ' + (n + 1));
+              b.setAttribute('aria-label', 'Show service ' + (n + 1));
               b.addEventListener('click', function () {
-                setHighlight(n);
-                scrollCardIntoView(n);
+                setSlide(n);
+                resetTimer();
               });
               dotsWrap.appendChild(b);
             })(di);
           }
         }
 
-        setHighlight(0);
-
-        if (!reduced) {
-          timer = window.setInterval(function () {
-            var next = (idx + 1) % cards.length;
-            setHighlight(next);
-            if (isMobile()) scrollCardIntoView(next);
-          }, isMobile() ? 6200 : 4800);
+        function nextTick() {
+          setSlide(idx + 1);
         }
 
-        if (isMobile()) {
-          grid.addEventListener(
-            'scroll',
-            function () {
-              var vp = grid.scrollLeft + grid.clientWidth * 0.5;
-              var best = 0;
-              var bestDist = Infinity;
-              for (var si = 0; si < cards.length; si++) {
-                var c = cards[si];
-                var mid = c.offsetLeft + c.clientWidth * 0.5;
-                var d = Math.abs(mid - vp);
-                if (d < bestDist) {
-                  bestDist = d;
-                  best = si;
-                }
-              }
-              setHighlight(best);
-            },
-            { passive: true }
-          );
+        function resetTimer() {
+          if (timer) window.clearInterval(timer);
+          if (!reduced) {
+            timer = window.setInterval(nextTick, 5000);
+          }
         }
+
+        for (var bi = 0; bi < buttons.length; bi++) {
+          (function (n) {
+            buttons[n].addEventListener('click', function () {
+              setSlide(n);
+              resetTimer();
+            });
+          })(bi);
+        }
+
+        buildDots();
+        setSlide(0);
+        resetTimer();
       }
 
       function initAmbientVideos() {
@@ -3127,7 +3078,7 @@
         });
       });
 
-      document.querySelectorAll('.card-grid, .testimonial-grid, .premium-grid, .gallery-masonry, .process-steps, .hero-services__grid').forEach(function (grid) {
+      document.querySelectorAll('.card-grid, .testimonial-grid, .premium-grid, .gallery-masonry, .process-steps, .hero-services__strip').forEach(function (grid) {
         var items = [];
         for (var ci = 0; ci < grid.children.length; ci++) {
           var ch = grid.children[ci];
