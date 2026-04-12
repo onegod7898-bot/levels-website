@@ -38,7 +38,7 @@ If port **8765** is stuck, close the preview server window or run `netstat -ano 
 
 - Edit embedded `<style>` in `index.html` to adjust colours, fonts, or layout.
 - Replace images in `images/` with your own; keep filenames or update paths.
-- **`og-image.png`** — 1200×630 share image for Open Graph / Twitter. Replace the file in the project root and redeploy; meta tags already point to `https://www.levels-360.com/og-image.png`.
+- **`og-image.png`** — 1200×630 share image for Open Graph / Twitter. Replace the file in the project root and redeploy; meta tags point to `https://levels-website.vercel.app/og-image.png`.
 - Add form handling (e.g., Formspree, Netlify Forms, or a small API) if you add a contact form later.
 
 ## Troubleshooting
@@ -61,7 +61,7 @@ This site is static HTML (no framework build). To host it on [Vercel](https://ve
 2. In Vercel: **Add New Project** → import the repo.
 3. **Framework preset:** Other (or “Other” with no framework). **Build command:** leave empty. **Output directory:** `.` (project root).
 4. Deploy. Vercel will serve `index.html`, `robots.txt`, and `sitemap.xml` from the project root.
-5. In **Project → Settings → Domains**, connect **levels-360.com** / **www** and follow DNS instructions from Vercel.
+5. In **Project → Settings → Domains**, connect your custom domain when ready and follow DNS instructions from Vercel.
 6. **SEO:** Rankings depend on content quality, backlinks, and competition — no host can guarantee “#1 on Google.” This project includes canonical URLs, meta tags, Open Graph, Twitter cards, `robots.txt`, `sitemap.xml`, and JSON-LD (`LocalBusiness` + `WebSite`). If you use a temporary `*.vercel.app` URL before the custom domain is live, update `canonical`, `og:url`, `sitemap.xml`, and `robots.txt` to match your final domain, or add redirects in Vercel so one primary URL is clear to search engines.
 
 CLI (optional): install the [Vercel CLI](https://vercel.com/docs/cli), run `vercel` inside this folder, and follow the prompts.

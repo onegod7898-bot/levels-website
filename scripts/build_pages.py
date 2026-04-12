@@ -148,7 +148,7 @@ def hub_section() -> str:
 def footer_block() -> str:
     return """  <footer>
     <p class="footer-region fade-in" style="text-align:center;margin-bottom:12px;color:var(--text-muted);font-size:0.95rem;">Serving all of Scotland</p>
-    <p>&copy; Levels. All rights reserved. · <a href="https://www.levels-360.com/">levels-360.com</a></p>
+    <p>&copy; Levels. All rights reserved.</p>
     <p class="footer-social">
       <a href="https://www.instagram.com/levels360_/" target="_blank" rel="noopener noreferrer">Instagram</a>
       <span aria-hidden="true"> · </span>
@@ -200,7 +200,7 @@ def head_variant(
   <meta property="og:url" content="{canonical}">
   <meta property="og:title" content="{og_title}">
   <meta property="og:description" content="{desc}">
-  <meta property="og:image" content="https://www.levels-360.com/og-image.png">
+  <meta property="og:image" content="https://levels-website.vercel.app/og-image.png">
   <link rel="icon" href="https://images.squarespace-cdn.com/content/v1/65390bdc8b505402583f3d5b/707db16c-7f27-44f5-88ee-e5badc2a7ddd/LEVELS+LOGO.png?format=100w" type="image/png">
   <link rel="preconnect" href="https://images.squarespace-cdn.com" crossorigin>
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
@@ -297,7 +297,7 @@ def main() -> None:
     index_body = f"""{head_variant(
         "Levels | 360 Video Booth, Photobooth Hire & Event Experiences | Scotland",
         "Levels — 360 videobooth, selfie booth, pancake cart, and chocolate fountain hire across Scotland. Book online.",
-        "https://www.levels-360.com/",
+        "https://levels-website.vercel.app/",
         preload_hero=True,
     ).replace("</head>", ld_block + "</head>")}
 {loader_block()}
@@ -344,7 +344,7 @@ def main() -> None:
         "services",
         "Services | Levels — 360 videobooth, chocolate fountain, selfie booth, pancake cart | Scotland",
         "Four signature hire options for weddings and events in Scotland: 360 videobooth, chocolate fountain, selfie booth, pancake cart.",
-        "https://www.levels-360.com/services.html",
+        "https://levels-website.vercel.app/services.html",
         sec_services,
     )
     write_page(
@@ -352,7 +352,7 @@ def main() -> None:
         "how",
         "How it works | Levels Event Hire | Scotland",
         "Enquire, get a quote, we set up, you celebrate — simple process for 360 videobooth and event hire in Scotland.",
-        "https://www.levels-360.com/how-it-works.html",
+        "https://levels-website.vercel.app/how-it-works.html",
         sec_hiw,
     )
     write_page(
@@ -360,7 +360,7 @@ def main() -> None:
         "booth",
         "360 videobooth | Levels | Scotland",
         "Professional 360 videobooth — HD slow-motion platform, crew, overlays, and travel across Scotland.",
-        "https://www.levels-360.com/360-videobooth.html",
+        "https://levels-website.vercel.app/360-videobooth.html",
         sec_booth,
     )
     write_page(
@@ -368,7 +368,7 @@ def main() -> None:
         "package",
         "The package | Levels 360 videobooth | Scotland",
         "Everything we bring on the night — props, overlays, attendants, and memories from your 360 videobooth booking.",
-        "https://www.levels-360.com/package.html",
+        "https://levels-website.vercel.app/package.html",
         sec_pkg,
     )
     write_page(
@@ -376,7 +376,7 @@ def main() -> None:
         "gallery",
         "Gallery | Levels Event Hire | Scotland",
         "Recent setups — 360 videobooth, chocolate fountain, pancake cart, and branded hospitality across Scotland.",
-        "https://www.levels-360.com/gallery.html",
+        "https://levels-website.vercel.app/gallery.html",
         sec_gal,
     )
     instagram_main = sec_ig + "\n" + strip_b
@@ -385,7 +385,7 @@ def main() -> None:
         "instagram",
         "Instagram & reels | Levels | Scotland",
         "Curated reels from the 360 videobooth, chocolate fountain, and pancake cart — Levels on Instagram.",
-        "https://www.levels-360.com/instagram.html",
+        "https://levels-website.vercel.app/instagram.html",
         instagram_main,
     )
     why_main = sec_why + "\n" + sec_test
@@ -394,7 +394,7 @@ def main() -> None:
         "why",
         "Why Levels | FAQs & testimonials | Scotland",
         "Why book Levels — tailored service, experienced crew, calm logistics, and testimonials from Scottish weddings and events.",
-        "https://www.levels-360.com/why.html",
+        "https://levels-website.vercel.app/why.html",
         why_main,
     )
     write_page(
@@ -402,7 +402,7 @@ def main() -> None:
         "book",
         "Book your event | Levels | Scotland",
         "Book 360 videobooth, chocolate fountain, selfie booth, or pancake cart — tell us your date and venue.",
-        "https://www.levels-360.com/book.html",
+        "https://levels-website.vercel.app/book.html",
         sec_book,
     )
 
