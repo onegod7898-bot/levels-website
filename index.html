@@ -1980,52 +1980,59 @@
       text-align: center;
       max-width: 40rem;
     }
+    .hero.hero--services .hero__intro {
+      position: relative;
+      z-index: 0;
+      padding: clamp(8px, 2vw, 16px) clamp(16px, 4vw, 28px);
+    }
+    .hero.hero--services .hero__intro::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 42%;
+      transform: translate(-50%, -50%);
+      width: min(120%, 480px);
+      height: min(220%, 280px);
+      background: radial-gradient(ellipse 75% 65% at 50% 50%, rgba(48, 26, 22, 0.42), transparent 62%);
+      pointer-events: none;
+      z-index: -1;
+    }
     .hero-services-headline {
-      font-family: var(--font-body);
-      font-size: clamp(1.65rem, 4.2vw, 2.75rem);
-      font-weight: 800;
-      line-height: 1.08;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
       margin: 0 0 14px;
-      text-wrap: balance;
+      text-align: center;
       color: #fff;
-      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(12px, 2.2vw, 22px);
+      text-wrap: balance;
     }
     .hero-services-headline__line {
       display: block;
+      max-width: 40rem;
+      margin: 0 auto;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(0.9rem, 2.15vw, 1.2rem);
+      line-height: 1.45;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 22px rgba(0, 0, 0, 0.55);
     }
     .hero-services-headline__brand {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 0.35em 0.55em;
-      margin-top: 0.06em;
-      line-height: 1.05;
-    }
-    .hero-services-headline__next {
-      font-family: var(--font-body);
-      font-weight: 800;
-      font-style: normal;
-      font-size: clamp(1.65rem, 4.2vw, 2.75rem);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #fff;
-      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
-      background: none;
-      -webkit-background-clip: unset;
-      background-clip: unset;
-      -webkit-text-fill-color: #fff;
-      filter: none;
+      margin: 0;
+      line-height: 0;
     }
     .hero-services-headline__logo {
-      height: clamp(1.85rem, 5vw, 3rem);
+      height: clamp(2.65rem, 9vw, 4.85rem);
       width: auto;
-      max-width: min(70vw, 260px);
+      max-width: min(88vw, 340px);
       object-fit: contain;
-      object-position: center left;
-      filter: drop-shadow(0 2px 16px rgba(0, 0, 0, 0.5));
+      object-position: center;
+      filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.55));
     }
     .hero-services-sub {
       font-size: clamp(0.95rem, 1.85vw, 1.1rem);
@@ -2215,9 +2222,8 @@
       <div class="hero__inner">
         <header class="hero__intro fade-in">
           <h1 class="hero-services-headline">
-            <span class="hero-services-headline__line">Take Your Event To The</span>
+            <span class="hero-services-headline__line">Take Your Event To The Next</span>
             <span class="hero-services-headline__brand">
-              <span class="hero-services-headline__next">Next</span>
               <img class="hero-services-headline__logo" src="https://images.squarespace-cdn.com/content/v1/65390bdc8b505402583f3d5b/707db16c-7f27-44f5-88ee-e5badc2a7ddd/LEVELS+LOGO.png?format=500w" width="315" height="60" alt="Levels" fetchpriority="high" decoding="async">
             </span>
           </h1>
