@@ -36,6 +36,9 @@
   <link rel="dns-prefetch" href="https://images.squarespace-cdn.com">
   <link rel="dns-prefetch" href="https://video.squarespace-cdn.com">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <!-- Hero background: keep these URLs in sync with HERO_VIDEO_URL + HERO_FALLBACK_IMAGE in the page script -->
+  <link rel="preload" href="assets/hero-bg.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="https://images.squarespace-cdn.com/content/v1/65390bdc8b505402583f3d5b/74725833-ff01-45a1-a950-fb6e02e1976c/IMG_6154.jpg" as="image" fetchpriority="high">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[
     {"@type":"WebSite","@id":"https://www.levels-360.com/#website","url":"https://www.levels-360.com/","name":"Levels","description":"360 Video Booth, photobooth hire, pancake cart, chocolate fountain, and selfie booth for events in Scotland.","inLanguage":"en-GB","publisher":{"@id":"https://www.levels-360.com/#business"}},
@@ -525,6 +528,7 @@
       height: 100%;
       object-fit: cover;
       pointer-events: none;
+      background: #000;
     }
     /* YouTube / Vimeo embed: cover the hero like object-fit: cover (16:9) */
     .hero-bg iframe.hero-video {
@@ -2247,7 +2251,8 @@
        * Instagram reels are linked in the grid; embeds look like IG’s widget, so we use
        * native video for the “playing” look. Per-reel MP4s would need to be hosted by you.
        */
-      /* Must exist on the deployed site (commit assets/hero-bg.mp4) or use a full URL: https://…/file.mp4, .m3u8, YouTube, or Vimeo */
+      /* Must exist on the deployed site (commit assets/hero-bg.mp4) or use a full URL: https://…/file.mp4, .m3u8, YouTube, or Vimeo.
+       * If you change this, update the matching <link rel="preload"> in <head> (and poster preload if the fallback image changes). */
       var HERO_VIDEO_URL = 'assets/hero-bg.mp4';
       var AMBIENT_VIDEO_URL = HERO_VIDEO_URL;
       var HERO_FALLBACK_IMAGE =
@@ -2273,6 +2278,7 @@
       }
       function attachStreamingVideo(url, container, opts) {
         opts = opts || {};
+        var isHero = opts.hero === true;
         var videoClass = opts.videoClass || 'hero-video';
         var video = document.createElement('video');
         video.className = videoClass;
@@ -2284,6 +2290,17 @@
         video.playsInline = true;
         video.setAttribute('aria-hidden', 'true');
         if (opts.title) video.title = opts.title;
+        if (isHero) {
+          video.preload = 'auto';
+          video.setAttribute('preload', 'auto');
+          video.setAttribute('fetchpriority', 'high');
+          if (HERO_FALLBACK_IMAGE) {
+            video.poster = HERO_FALLBACK_IMAGE;
+          }
+        } else {
+          video.preload = 'metadata';
+          video.setAttribute('preload', 'metadata');
+        }
         container.appendChild(video);
 
         function tryPlay() {
@@ -2304,15 +2321,30 @@
         if (isHlsUrl(url)) {
           if (video.canPlayType('application/vnd.apple.mpegurl')) {
             video.src = url;
-            video.addEventListener('loadeddata', function onLd() {
-              video.removeEventListener('loadeddata', onLd);
-              tryPlay();
-            });
+            video.addEventListener(
+              'canplay',
+              function onCp() {
+                video.removeEventListener('canplay', onCp);
+                tryPlay();
+              },
+              { once: true }
+            );
             video.load();
+            tryPlay();
             return;
           }
           if (typeof Hls !== 'undefined' && Hls.isSupported()) {
-            var hls = new Hls({ enableWorker: true });
+            var hlsConfig = {
+              enableWorker: true,
+              lowLatencyMode: false,
+              maxBufferLength: 24,
+              maxMaxBufferLength: 60
+            };
+            if (isHero) {
+              hlsConfig.startLevel = 0;
+              hlsConfig.capLevelToPlayerSize = true;
+            }
+            var hls = new Hls(hlsConfig);
             hls.loadSource(url);
             hls.attachMedia(video);
             hls.on(Hls.Events.MANIFEST_PARSED, function () {
@@ -2335,6 +2367,15 @@
         source.src = url;
         source.type = 'video/mp4';
         video.appendChild(source);
+        video.load();
+        video.addEventListener(
+          'canplay',
+          function onHeroCanPlay() {
+            video.removeEventListener('canplay', onHeroCanPlay);
+            tryPlay();
+          },
+          { once: true }
+        );
         tryPlay();
       }
       function initHeroVideo() {
@@ -2353,6 +2394,7 @@
           iframe.className = 'hero-video';
           iframe.title = 'Levels hero background';
           iframe.setAttribute('loading', 'eager');
+          iframe.setAttribute('fetchpriority', 'high');
           iframe.src = 'https://www.youtube.com/embed/' + yid +
             '?autoplay=1&mute=1&loop=1&playlist=' + encodeURIComponent(yid) +
             '&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0';
@@ -2367,13 +2409,15 @@
           var vframe = document.createElement('iframe');
           vframe.className = 'hero-video';
           vframe.title = 'Levels hero background';
+          vframe.setAttribute('loading', 'eager');
+          vframe.setAttribute('fetchpriority', 'high');
           vframe.src = 'https://player.vimeo.com/video/' + vid +
             '?autoplay=1&muted=1&loop=1&background=1&autopause=0';
           vframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
           container.appendChild(vframe);
           return;
         }
-        attachStreamingVideo(url, container);
+        attachStreamingVideo(url, container, { hero: true });
       }
 
       function initAmbientVideos() {
