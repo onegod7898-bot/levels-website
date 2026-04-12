@@ -79,15 +79,21 @@ NEW_CSS = r"""    .hero.hero--services {
       display: block;
     }
     .hero-services-headline__brand {
-      display: block;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.35em 0.55em;
       margin-top: 0.06em;
+      line-height: 1.05;
+    }
+    .hero-services-headline__next {
       font-family: var(--font-logo);
       font-weight: 500;
       font-style: italic;
       font-size: clamp(2rem, 5.5vw, 3.35rem);
       letter-spacing: 0.03em;
       text-transform: none;
-      line-height: 1.05;
       background: linear-gradient(95deg, #9dd9de 0%, #c9b896 42%, #e8c4b8 78%, #b8a5e0 100%);
       -webkit-background-clip: text;
       background-clip: text;
@@ -95,10 +101,18 @@ NEW_CSS = r"""    .hero.hero--services {
       filter: drop-shadow(0 2px 20px rgba(0, 0, 0, 0.45));
     }
     @supports not (background-clip: text) {
-      .hero-services-headline__brand {
+      .hero-services-headline__next {
         color: var(--champagne);
         -webkit-text-fill-color: var(--champagne);
       }
+    }
+    .hero-services-headline__logo {
+      height: clamp(1.85rem, 5vw, 3rem);
+      width: auto;
+      max-width: min(70vw, 260px);
+      object-fit: contain;
+      object-position: center left;
+      filter: drop-shadow(0 2px 16px rgba(0, 0, 0, 0.5));
     }
     .hero-services-sub {
       font-size: clamp(0.95rem, 1.85vw, 1.1rem);
@@ -228,7 +242,10 @@ NEW_HERO = """<section id="home" class="hero hero--services">
         <header class="hero__intro fade-in">
           <h1 class="hero-services-headline">
             <span class="hero-services-headline__line">Take Your Event To The</span>
-            <span class="hero-services-headline__brand">Next Level</span>
+            <span class="hero-services-headline__brand">
+              <span class="hero-services-headline__next">Next</span>
+              <img class="hero-services-headline__logo" src="https://images.squarespace-cdn.com/content/v1/65390bdc8b505402583f3d5b/707db16c-7f27-44f5-88ee-e5badc2a7ddd/LEVELS+LOGO.png?format=500w" width="315" height="60" alt="Levels" fetchpriority="high" decoding="async">
+            </span>
           </h1>
           <p class="hero-services-sub">All-in-one event experiences — from 360 Video Booth to catering setups.</p>
           <a class="btn-pill btn-pill--primary hero-services-cta" href="#booking">Book Your Date</a>
