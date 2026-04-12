@@ -88,23 +88,19 @@ NEW_CSS = r"""    .hero.hero--services {
       line-height: 1.05;
     }
     .hero-services-headline__next {
-      font-family: var(--font-logo);
-      font-weight: 500;
-      font-style: italic;
-      font-size: clamp(2rem, 5.5vw, 3.35rem);
-      letter-spacing: 0.03em;
-      text-transform: none;
-      background: linear-gradient(95deg, #9dd9de 0%, #c9b896 42%, #e8c4b8 78%, #b8a5e0 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 2px 20px rgba(0, 0, 0, 0.45));
-    }
-    @supports not (background-clip: text) {
-      .hero-services-headline__next {
-        color: var(--champagne);
-        -webkit-text-fill-color: var(--champagne);
-      }
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-style: normal;
+      font-size: clamp(1.65rem, 4.2vw, 2.75rem);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+      -webkit-text-fill-color: #fff;
+      filter: none;
     }
     .hero-services-headline__logo {
       height: clamp(1.85rem, 5vw, 3rem);
