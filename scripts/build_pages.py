@@ -271,6 +271,7 @@ def main() -> None:
     sec_why = singular_copy(subpage_link_fixes(sec_why))
     sec_test = singular_copy(subpage_link_fixes(sec_test))
     sec_book = singular_copy(subpage_link_fixes(sec_book))
+    sec_book = sec_book.replace("Reels on this page", "Reels on site")
 
     # Hamid caption on services
     sec_services = sec_services.replace(
