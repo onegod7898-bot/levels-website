@@ -512,6 +512,12 @@
       z-index: 0;
       background: var(--bg);
     }
+    /* When MP4/HLS fails (missing file, etc.), JS sets this + full-bleed image */
+    .hero-bg.hero-bg--image {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
     .hero-bg video.hero-video,
     .hero-bg video {
       position: absolute;
@@ -1957,8 +1963,11 @@
        * Instagram reels are linked in the grid; embeds look like IG’s widget, so we use
        * native video for the “playing” look. Per-reel MP4s would need to be hosted by you.
        */
+      /* Must exist on the deployed site (commit assets/hero-bg.mp4) or use a full URL: https://…/file.mp4, .m3u8, YouTube, or Vimeo */
       var HERO_VIDEO_URL = 'assets/hero-bg.mp4';
       var AMBIENT_VIDEO_URL = HERO_VIDEO_URL;
+      var HERO_FALLBACK_IMAGE =
+        'https://images.squarespace-cdn.com/content/v1/65390bdc8b505402583f3d5b/74725833-ff01-45a1-a950-fb6e02e1976c/IMG_6154.jpg';
 
       function extractYouTubeId(url) {
         var m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([^&\s?/#]+)/);
@@ -1970,6 +1979,13 @@
       }
       function isHlsUrl(url) {
         return /\.m3u8(\?|$)/i.test(url) || url.indexOf('playlist.m3u8') !== -1;
+      }
+      function applyHeroImageFallback(container) {
+        if (!container || container.id !== 'heroBg') return;
+        container.classList.add('hero-bg--image');
+        if (HERO_FALLBACK_IMAGE) {
+          container.style.backgroundImage = 'url("' + HERO_FALLBACK_IMAGE + '")';
+        }
       }
       function attachStreamingVideo(url, container, opts) {
         opts = opts || {};
@@ -1991,6 +2007,16 @@
           if (p && typeof p.catch === 'function') p.catch(function () {});
         }
 
+        video.addEventListener(
+          'error',
+          function onVideoError() {
+            video.removeEventListener('error', onVideoError);
+            if (video.parentNode === container) container.removeChild(video);
+            applyHeroImageFallback(container);
+          },
+          false
+        );
+
         if (isHlsUrl(url)) {
           if (video.canPlayType('application/vnd.apple.mpegurl')) {
             video.src = url;
@@ -2011,12 +2037,14 @@
             hls.on(Hls.Events.ERROR, function (_, data) {
               if (data.fatal) {
                 hls.destroy();
-                container.removeChild(video);
+                if (video.parentNode === container) container.removeChild(video);
+                applyHeroImageFallback(container);
               }
             });
             return;
           }
-          container.removeChild(video);
+          if (video.parentNode === container) container.removeChild(video);
+          applyHeroImageFallback(container);
           return;
         }
         var source = document.createElement('source');
@@ -2031,6 +2059,7 @@
         if (!url || !container) return;
         if (container.classList.contains('hero-bg--image')) {
           container.classList.remove('hero-bg--image');
+          container.style.backgroundImage = '';
         }
 
         if (/youtube\.com|youtu\.be/i.test(url)) {
