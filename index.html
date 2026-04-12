@@ -254,7 +254,7 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      padding: 18px 24px;
+      padding: 18px clamp(16px, 4vw, 32px);
       transition: background 0.35s var(--ease), box-shadow 0.35s var(--ease);
     }
     .site-header.is-scrolled {
@@ -268,8 +268,9 @@
       margin: 0 auto;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+      justify-content: flex-start;
+      /* Moderate gap between logo and first nav item (matches reference) */
+      gap: clamp(22px, 2.8vw, 40px);
     }
     .logo {
       text-decoration: none;
@@ -278,6 +279,7 @@
       display: inline-flex;
       align-items: center;
       line-height: 1;
+      flex-shrink: 0;
       perspective: 960px;
       -webkit-perspective: 960px;
     }
@@ -400,9 +402,16 @@
     }
 
     .nav-desktop {
+      flex: 1;
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
       gap: 6px;
+      min-width: 0;
+    }
+    /* Primary CTA stays on the right; logo + links stay grouped to the left */
+    .nav-desktop > .btn-pill.btn-pill--primary {
+      margin-left: auto;
     }
     .nav-desktop a:not(.btn-pill) {
       padding: 8px 12px;
