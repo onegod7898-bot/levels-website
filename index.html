@@ -716,6 +716,9 @@
     .section--velvet {
       background: linear-gradient(180deg, #0a0a0a 0%, #000000 45%, #000000 100%);
     }
+    .section--hiw {
+      background: #000000;
+    }
     .section-inner {
       max-width: 1120px;
       margin: 0 auto;
@@ -860,6 +863,107 @@
     .premium-card .btn-pill {
       align-self: flex-start;
       margin-top: auto;
+    }
+
+    /* How it works — four-step process */
+    .process-steps {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(18px, 3vw, 28px);
+      margin-top: clamp(36px, 5vw, 52px);
+      padding-top: 4px;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 44px;
+      left: 8%;
+      right: 8%;
+      height: 0;
+      border-top: 1px dashed rgba(148, 163, 184, 0.45);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .process-step {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 0 4px;
+    }
+    .process-step__icon-wrap {
+      position: relative;
+      display: inline-flex;
+      justify-content: center;
+      margin-bottom: 26px;
+    }
+    .process-step__num {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      min-width: 30px;
+      height: 30px;
+      padding: 0 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #ffffff;
+      font-family: var(--font-caps);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+    .process-step__circle {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: #0a0a0a;
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .process-step__circle svg {
+      width: 38px;
+      height: 38px;
+      color: var(--accent);
+    }
+    .process-step h3 {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+    .process-step p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: #9ca3af;
+      max-width: 17rem;
+      margin: 0 auto;
+    }
+    @media (max-width: 900px) {
+      .process-steps {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px 20px;
+      }
+      .process-steps::before {
+        display: none;
+      }
+    }
+    @media (max-width: 520px) {
+      .process-steps {
+        grid-template-columns: 1fr;
+      }
     }
 
     .services-showcase {
@@ -1654,11 +1758,13 @@
           <button type="button" class="nav-dropdown__btn" id="navDropdownBtn" aria-expanded="false" aria-controls="navDropdownPanel" aria-haspopup="true">Services</button>
           <div class="nav-dropdown__panel" id="navDropdownPanel" role="menu">
             <a href="#services" role="menuitem">What we offer</a>
+            <a href="#how-it-works" role="menuitem">How it works</a>
             <a href="#booth" role="menuitem">360 Video Booth</a>
             <a href="#booking" role="menuitem">Book</a>
           </div>
         </div>
         <a href="#package">The Package</a>
+        <a href="#how-it-works">How it works</a>
         <a href="#why">Why Levels</a>
         <a href="#instagram">Instagram</a>
         <a href="#booking">Book</a>
@@ -1677,6 +1783,7 @@
       <a href="#services">Services</a>
       <a href="#booth">360 Video Booth</a>
       <a href="#package">The Package</a>
+      <a href="#how-it-works">How it works</a>
       <a href="#why">Why Levels</a>
       <a href="#instagram">Instagram</a>
       <a href="#booking">Book</a>
@@ -1784,6 +1891,69 @@
           </article>
         </div>
         <p class="service-areas fade-in">360 videobooth &amp; photobooth hire across Scotland including Aberdeen, Dundee, Edinburgh, Glasgow, Stirling, Alloa, Falkirk, Inverness, Cumbernauld, Perth, and UK-wide. Pancake cart &amp; chocolate fountain: Dutch pancakes, mini pancakes, donuts, waffles; chocolate fountain with strawberries, bananas, grapes, fudge — chocolate fountain hire &amp; pancake cart hire in Scotland.</p>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="section section--hiw" aria-labelledby="how-it-works-heading">
+      <div class="section-inner">
+        <p class="section-kicker fade-in">Simple Process</p>
+        <h2 class="section-title section-title--mega fade-in" id="how-it-works-heading">How it works</h2>
+        <div class="process-steps">
+          <div class="process-step fade-in">
+            <div class="process-step__icon-wrap">
+              <span class="process-step__num" aria-hidden="true">01</span>
+              <div class="process-step__circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z"/>
+                </svg>
+              </div>
+            </div>
+            <h3>Enquire</h3>
+            <p>Tell us about your event — date, venue, and what services you&rsquo;re after.</p>
+          </div>
+          <div class="process-step fade-in">
+            <div class="process-step__icon-wrap">
+              <span class="process-step__num" aria-hidden="true">02</span>
+              <div class="process-step__circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                  <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                </svg>
+              </div>
+            </div>
+            <h3>Get a Quote</h3>
+            <p>We&rsquo;ll get back to you with a tailored package and transparent pricing.</p>
+          </div>
+          <div class="process-step fade-in">
+            <div class="process-step__icon-wrap">
+              <span class="process-step__num" aria-hidden="true">03</span>
+              <div class="process-step__circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+              </div>
+            </div>
+            <h3>We Set Up</h3>
+            <p>Our team arrives early, sets everything up, and handles all the tech so you don&rsquo;t have to.</p>
+          </div>
+          <div class="process-step fade-in">
+            <div class="process-step__icon-wrap">
+              <span class="process-step__num" aria-hidden="true">04</span>
+              <div class="process-step__circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5.8 11.3L2 22l10.7-3.8L22 2 5.8 11.3z"/>
+                  <path d="M12 22v-6M8 14l-1 4M16 10l4-2M10 6L8 2"/>
+                  <circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/>
+                  <circle cx="6" cy="18" r="1" fill="currentColor" stroke="none"/>
+                  <circle cx="14" cy="4" r="0.8" fill="currentColor" stroke="none"/>
+                </svg>
+              </div>
+            </div>
+            <h3>Party Time</h3>
+            <p>Sit back, enjoy your event, and let your guests have the time of their lives.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2331,7 +2501,7 @@
         });
       });
 
-      document.querySelectorAll('.card-grid, .testimonial-grid, .premium-grid, .gallery-masonry').forEach(function (grid) {
+      document.querySelectorAll('.card-grid, .testimonial-grid, .premium-grid, .gallery-masonry, .process-steps').forEach(function (grid) {
         var items = [];
         for (var ci = 0; ci < grid.children.length; ci++) {
           var ch = grid.children[ci];
